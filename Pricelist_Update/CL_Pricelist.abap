@@ -55,14 +55,7 @@ class zcl_rt_prc_cond definition
         importing
           !it_pricing_data type ty_t_pricing_data
           !is_idoc_conf    type ty_s_idoc_conf
-          !is_prc_conf     type ty_s_prc_conf,
-
-      set_config
-        importing
-          !is_idoc_conf type ty_s_idoc_conf
-          !is_prc_conf  type ty_s_prc_conf
-        changing
-          ct_config     type ty_t_edidc
+          !is_prc_conf     type ty_s_prc_conf
         .
 
   protected section.
@@ -73,6 +66,14 @@ class zcl_rt_prc_cond definition
       mt_pricing_data type ty_t_pricing_data,
       ms_e1komg       type e1komg,
       mt_e1komg       type table of e1komg.
+
+    class-METHODS:
+          set_config
+        importing
+          !is_idoc_conf type ty_s_idoc_conf
+          !is_prc_conf  type ty_s_prc_conf
+        changing
+          ct_config     type ty_t_edidc.
 
     methods:
       constructor,
@@ -161,7 +162,7 @@ CLASS ZCL_RT_PRC_COND IMPLEMENTATION.
 
 
 * <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Static Public Method ZCL_RT_PRC_COND=>SET_CONFIG
+* | Static Private Method ZCL_RT_PRC_COND=>SET_CONFIG
 * +-------------------------------------------------------------------------------------------------+
 * | [--->] IS_IDOC_CONF                   TYPE        TY_S_IDOC_CONF
 * | [--->] IS_PRC_CONF                    TYPE        TY_S_PRC_CONF
